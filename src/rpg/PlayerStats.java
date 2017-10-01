@@ -6,8 +6,8 @@ package rpg;
  */
 
 public class PlayerStats {
-	
-	private int vitality, strength, luck, totHP, currentHP;
+		
+	private int vitality, strength, luck, totHP, currentHP, level, exp, points;
 	
 	public PlayerStats() {
 	vitality = 1;
@@ -15,6 +15,9 @@ public class PlayerStats {
 	luck = 1;
 	totHP = 50;
 	currentHP = 50;
+	level = 1;
+	exp = 0;
+	points = 5;
 	
 	}
 	public void setVitality(int v) {
@@ -42,6 +45,15 @@ public class PlayerStats {
 	public void setInitHP() {
 		currentHP = totHP;
 	}
+	public void setEXP(int a) {
+		exp += a;
+	}
+	public void setLevel() {
+		level = (int) (exp / 100 * Math.pow(2, level));
+	}
+	public void setPoints() {
+		points = level * 5 - vitality - luck - strength + 3;
+	}
 	public int getTotHP() {
 		return totHP;
 	}
@@ -56,6 +68,15 @@ public class PlayerStats {
 	}
 	public int getLuck() {
 		return luck;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public int getEXP() {
+		return exp; 
+	}
+	public int getPoints() {
+		return points;
 	}
 }
 
