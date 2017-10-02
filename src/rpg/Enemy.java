@@ -8,12 +8,12 @@ public class Enemy extends PlayerStats{
 	private int eStrength, eHP, eEXP, eLevel;
 		public Enemy() {
 			eLevel = 1;
-			eStrength = 0;
+			eStrength = 1;
 			eHP = 100;
 			eEXP = 0;
 		}
 		public void setEStats() {
-			eLevel = rand.nextInt(getLevel());
+			eLevel = rand.nextInt(getLevel()) +1;
 			eStrength = (int) (1.5*eLevel);
 			eHP = eLevel *75;
 			eEXP = ThreadLocalRandom.current().nextInt(getEXP() / 30, getEXP()/20 + 1);

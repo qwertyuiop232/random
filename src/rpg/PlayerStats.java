@@ -1,13 +1,8 @@
 package rpg;
 
-/**
- * @author qwertyuiop1
- *
- */
-
 public class PlayerStats {
 		
-	private int vitality, strength, luck, totHP, currentHP, level, exp, points;
+	private int vitality, strength, luck, totHP, currentHP, level, exp, points, i,expNeeded;
 	
 	public PlayerStats() {
 	vitality = 1;
@@ -18,6 +13,8 @@ public class PlayerStats {
 	level = 1;
 	exp = 0;
 	points = 5;
+	i= 0;
+	expNeeded =0;
 	
 	}
 	public void setVitality(int v) {
@@ -49,7 +46,14 @@ public class PlayerStats {
 		exp += a;
 	}
 	public void setLevel() {
-		level = (int) (exp / 100 * Math.pow(2, level));
+		While (i <= level) {
+			expNeeded += 50* (int) Math.pow(2, i);
+			i++;
+			if (exp>=expNeeded) {
+				level++;
+				setPoints();
+			}
+		}
 	}
 	public void setPoints() {
 		points = level * 5 - vitality - luck - strength + 3;

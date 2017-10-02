@@ -3,7 +3,8 @@ package rpg;
 public class Battle {
 	
 	private int userDmg, eDmg;
-
+	private String output;
+	
 	PlayerStats stats;
 	Enemy enemy;
 	
@@ -23,7 +24,13 @@ public class Battle {
 			eDmg = (int) (Math.random() *enemy.getEStrength() * 20 + enemy.getEStrength() * 15);
 			stats.setCurrentHP(eDmg);
 			enemy.setEHP(userDmg);
-							
+			
+			output = "Enemy dealt " + String.valueOf(eDmg) + " damage to you" +System.lineSeparator()+ "Your HP: " 
+					+ String.valueOf(stats.getCurrentHP()) + System.lineSeparator() + "You dealt "+String.valueOf(userDmg) + " damage"
+					+System.lineSeparator()+ "Enemy Hp: " + String.valueOf(enemy.getEHP());
+		}
+		public String getFight() {
+			return output;
 		}
 
 }
