@@ -3,9 +3,7 @@ package rpg;
 public class Input {
 	
 	private String in, out;
-	PlayerStats stats;
-	Enemy enemy;
-	Battle battle = new Battle();
+	Processing processing = new Processing(); 
 	
 	public Input() {
 	in = null;	
@@ -13,18 +11,26 @@ public class Input {
 	}
 	public void setInput(String userInput) {
 		in = userInput;
+		String segments[] = in.split("/");
 
 		if (in.equals("/help")) 
 			out = "/fight , /heal, /quit";
 			else
-			 if (in.equals("/fight")) {
-				battle.setFight();
-				out = battle.getFight();
-		}
+				if (in.equals("/quit"))
+					out = "See you next time!";
+				else
+					if(in.equals("/fight") || in.equals("/heal") ) {
+					
+						processing.setProcess();
+						processing.setOutput();
+						out = processing.getOutput();
+					}
+						
+		
 		else 
 			out = "invalid command";
 	}
-	public String getOutput() {
+	public String getOutput() {	
 		return out;
 	}
 
@@ -46,7 +52,9 @@ public class Input {
         		if (segments.length == 3) {
         			
         		}
-
+			 if (in.equals("/fight")) {
+				battle.setFight();
+				out = battle.getFight();
         		
 	}
 	public void setString1(String string1) {
