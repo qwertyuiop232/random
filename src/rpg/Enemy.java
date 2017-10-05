@@ -2,7 +2,7 @@ package rpg;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Enemy extends PlayerStats{
+public class Enemy extends Stats {
 	Random rand = new Random();
 	
 	private int eStrength, eHP, eEXP, eLevel;

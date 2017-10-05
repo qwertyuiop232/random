@@ -5,7 +5,7 @@ public class Battle {
 	private int userDmg, eDmg;
 	private String output;
 	
-	PlayerStats stats;
+	Stats stats;
 	Enemy enemy;
 	
 		public Battle() {
@@ -13,7 +13,7 @@ public class Battle {
 			userDmg = 0;
 			eDmg = 0;
 		
-			stats = new PlayerStats(); //Take out and set actual values, not new ones
+			stats = new Stats(); //Take out and set actual values, not new ones
 			enemy = new Enemy();
 			enemy.setEStats();
 		}

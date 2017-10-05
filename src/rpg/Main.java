@@ -6,8 +6,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//set up character
-		PlayerStats stats;
-		stats = new PlayerStats();
+		Stats stats;
+		stats = new Stats();
 		
 		//set up enemy
 		Enemy enemy;

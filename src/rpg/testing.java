@@ -7,9 +7,9 @@ public class testing {
 		// TODO Auto-generated method stub
 		int userHP;
 		
-		PlayerStats playerVitality;
+		Stats playerVitality;
 		
-		playerVitality = new PlayerStats();
+		playerVitality = new Stats();
 		
 		playerVitality.setVitality(10);
 			

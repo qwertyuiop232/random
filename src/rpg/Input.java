@@ -3,7 +3,7 @@ package rpg;
 public class Input {
 	
 	private String in, out;
-	PlayerStats stats;
+	Stats stats;
 	Enemy enemy;
 	Battle battle = new Battle();
 	
