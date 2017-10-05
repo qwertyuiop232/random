@@ -2,23 +2,40 @@ package rpg;
 
 public class Battle {
 	
-	private int userDmg, eDmg;
-	private String output;
-	
-	Stats stats;
-	Enemy enemy;
-	
+	private int userDmg, eDmg, userHP, eHP;
+	Enemy enemy = new Enemy();
+	Stats stats = new Stats();
 		public Battle() {
 
 			userDmg = 0;
 			eDmg = 0;
-		
-			stats = new Stats(); //Take out and set actual values, not new ones
-			enemy = new Enemy();
-			enemy.setEStats();
-		}
+			userHP = 0;
+			eHP = 0;
 
-		
+		}
+		public void setDmg(int a, int b) {
+			userDmg = (int) (Math.random() * a * 20 + a *15);
+			eDmg = (int) (Math.random() * b* 20 + b *15);
+		}
+		public void setHP(int c, int d) {
+			userHP = c - eDmg;
+			eHP = d - userDmg;
+		}
+		public int getEDmg() {
+			return eDmg;
+		}
+		public int getEHP() {
+			return eHP;
+		}
+		public int getUserDmg() {
+			return userDmg;
+		}
+		public int getUserHP() {
+			return userHP;
+		}
+}
+
+/*		
 		public void setFight() {		
 			userDmg = (int) (Math.random() * stats.getStrength() * 20 + stats.getStrength() *15);
 			eDmg = (int) (Math.random() *enemy.getEStrength() * 20 + enemy.getEStrength() * 15);
@@ -37,5 +54,5 @@ public class Battle {
 		
 
 	
-
+*/
 

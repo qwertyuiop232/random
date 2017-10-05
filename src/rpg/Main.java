@@ -5,13 +5,6 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//set up character
-		Stats stats;
-		stats = new Stats();
-		
-		//set up enemy
-		Enemy enemy;
-		
 		//set scanner 
 		Scanner scanner;
 		scanner = new Scanner(System.in);
@@ -31,13 +24,14 @@ public class Main {
 		do {
 		
 			userInput = scanner.nextLine();
-
+			
+			if (userInput.equals("/quit")) 
+				running = false;
 			
 			input.setInput(userInput);
 			System.out.println(input.getOutput());
 			
-			if (userInput.equals("/quit")) 
-				running = false;
+
 			
 		}
 		while (running == true);
