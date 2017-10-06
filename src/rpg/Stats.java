@@ -2,7 +2,7 @@ package rpg;
 
 public class Stats {
 		
-	private static int vitality, strength, luck, totHP, level, exp, points, i, expNeeded;
+	public static int vitality, strength, luck, totHP, level, exp, points, i, expNeeded, userHP;
 	
 	public Stats() {
 	vitality = 0;
@@ -14,6 +14,7 @@ public class Stats {
 	points = 0;
 	i= 0;
 	expNeeded = 0;
+	userHP = 0;
 	
 	}
 	public void setInitStats() {
@@ -23,24 +24,29 @@ public class Stats {
 		strength = 1;
 		luck = 1;
 		points = 5;
+		userHP = 50;
+		i = 1;
 	}
 	public void setStats(int[] stats) {
 		level = stats[0];
 		totHP = stats[1];
-		vitality = stats[2];
-		strength = stats[3];
-		luck = stats[4];
-		expNeeded = stats[5];
-		points = stats[6];
-		
+		userHP = stats[2];
+		vitality = stats[3];
+		strength = stats[4];
+		luck = stats[5];
+		exp = stats[6];
+		expNeeded = stats[7];
+		points = stats[8];
+//		playerStats = {level, totHP, userHP vitality, strength, luck, exp, expNeeded, points};
+
 	}
 	
-	public static int getHeal(int currentHP) {
-		if (currentHP >= totHP + 25*level) 
-			currentHP = totHP;
+	public static int getHeal() {
+		if (userHP <= 25) 
+			userHP = totHP;
 		else 
-			currentHP += 25*level;
-		return currentHP;
+			userHP = userHP + 25;
+		return userHP;
 	}
 	
 	public void setVitality(int v) {
@@ -66,13 +72,13 @@ public class Stats {
 	}
 	public void setEXP(int expGained) {
 		exp += expGained;
-		if (exp>=expNeeded) {
-				level++;
-				points = level * 5 - vitality - luck - strength + 3;
-			}
-			if (i <= level) {
+			while (i < level) {
 				expNeeded += 50 * 2 * Math.pow(2, i);
 				i++;
+				if (exp >= expNeeded) {
+					level++;
+					points = level * 5 - vitality - luck - strength + 3;
+				}
 			}
 	}
 	public int getTotHP() {
@@ -98,8 +104,9 @@ public class Stats {
 	}
 
 	public int[] getStats() {
-		
-		int[] a= {level, totHP, vitality, strength, luck, exp, expNeeded, points};
+//		playerStats = {level, totHP, userHP vitality, strength, luck, exp, expNeeded, points};
+
+		int[] a= {level, totHP, userHP, vitality, strength, luck, exp, expNeeded, points};
 		return a;
 	}
 	

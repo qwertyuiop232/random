@@ -7,7 +7,8 @@ public class Input {
 	Processing processing = new Processing(); 
 
 	private String in, out;
-	private static final String[] commands = { "", "/fight", "/heal", "/advance", "/run", "/assign", "/start"};
+	private static final String[] commands = { "/assign/strength","/restart", "/assign/vitality","/fight", "/heal", "/advance", "/run", "/assign/luck", "/start", "/stats"};
+	
 	
 	public Input() {
 	in = null;	
@@ -15,7 +16,7 @@ public class Input {
 	}
 		
 	public void setInput(String userInput) {
-		in = userInput;
+		in = userInput.toLowerCase();
 		
 				  
 		  if (Arrays.asList(commands).contains(in)) {
@@ -24,7 +25,7 @@ public class Input {
 		  }
 		  	else 
 			  if (in.equals("/help")) 
-					out = "/advance, /fight , /heal, /quit, /start";
+					out = "/stats, /advance, /fight , /heal, /quit, /run, /start, /restart, /assign/(strength luck or vitality) ";
 				else
 					if (in.equals("/quit"))
 						out = "See you next time!";
