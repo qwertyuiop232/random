@@ -2,15 +2,14 @@ package rpg;
 
 public class Battle {
 	
-	private int userDmg, eDmg, userHP, eHP;
-	Enemy enemy = new Enemy();
-	Stats stats = new Stats();
-		public Battle() {
+	private static int userDmg, eDmg, userHP, eHP;
 
-			userDmg = 0;
-			eDmg = 0;
-			userHP = 0;
-			eHP = 0;
+	public Battle() {
+
+		userDmg = 0;
+		eDmg = 0;
+		userHP = 0;
+		eHP = 0;
 
 		}
 		public void setDmg(int a, int b) {

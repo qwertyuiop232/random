@@ -14,28 +14,31 @@ public class Main {
 		String userInput;
 		input = new Input();
 		
-		//create game states
+		//create game state
 		boolean running = true;
 		
 		//start game
-		System.out.println("Welcome");
+		System.out.println("Welcome! Type /start to get started");
 		System.out.println("Type /help for commands");
 		
 		do {
 		
 			userInput = scanner.nextLine();
 			
-			if (userInput.equals("/quit")) 
+			if (userInput.equals("/quit")) {
 				running = false;
+				scanner.close();
+			}			
 			
 			input.setInput(userInput);
 			System.out.println(input.getOutput());
 			
-
 			
 		}
 		while (running == true);
+		
 	}
 	
 
 }
+
