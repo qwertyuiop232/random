@@ -12,7 +12,7 @@ public class Processing {
 	Stats stats = new Stats(); 
 		
 	private String out;
-	public int userHP, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, level;
+	public int userHP, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, level, eLevel, eEXP, eStrength;
 	public boolean eAlive= false;
 	int[] playerStats; 
 	int[] enemyStats;
@@ -28,8 +28,13 @@ public class Processing {
 			expNeeded = 0;
 			points = 0;
 			userHP = 50;
+			
 			eHP = 0;
 			eTotHP = 0;
+			eLevel = 0;
+			eEXP = 0;
+			eStrength = 0;
+			
 			// playerStats = {level, totHP, userHP vitality, strength, luck, exp, expNeeded, points};
 			stats.setInitStats();
 			stats.setEXP(0);
@@ -66,13 +71,13 @@ public class Processing {
 							else {
 								String [] segments = in.split("/");
 								if (segments[2].equals("strength"))
-									;
+									setAllocate(2);
 								else 
 									if (segments[2].equals("vitality"))
-										;
+										setAllocate(3);
 									else
 										if (segments[2].equals("luck"))
-											;
+											setAllocate(1);
 								
 							}
 							
@@ -105,7 +110,7 @@ public class Processing {
 		
 	public void setHeal() {
 		stats.setStats(getStats()); //check
-		stats.setHeal(userHP);
+		stats.setHeal();
 		setStats(); //check
 		out = "User has healed for " + String.valueOf(25 * level) + System.lineSeparator() + 
 				"HP: " + String.valueOf(userHP);
@@ -133,6 +138,8 @@ public class Processing {
 			else 
 				out = "You do not have any points";
 		setStats();
+		stats.setStats(getStats());
+		setStatsOutput();
 		
 	}
 	public void setEscape() {
@@ -144,12 +151,13 @@ public class Processing {
 			out = "User is already in a fight!";
 		else {
 			eAlive = true;
-			setStats();//check
 			enemy.setEStats(level);
+			setEStats();
 			out = "A challenger appears!!" + System.lineSeparator() + "User level: " + String.valueOf(level)
 			+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP)
-			+ System.lineSeparator() + System.lineSeparator() + "Enemy HP: " + String.valueOf(eHP) + "/" + String.valueOf(eTotHP);
-			// int[] a =  {eLevel, eHP, eEXP, eStrength};
+			+ System.lineSeparator() + "Enemy level: " + String.valueOf(eLevel)
+			+ System.lineSeparator() + "Enemy HP: " + String.valueOf(eHP) + "/" + String.valueOf(eTotHP);
+			// int[] enemyStats =  {eLevel, eHP, eEXP, eStrength};
 		}
 	}
 	public void setStats() {
@@ -166,6 +174,16 @@ public class Processing {
 //		playerStats = {level, totHP, userHP vitality, strength, luck, exp, expNeeded, points};
 		  
 	}
+	public void setEStats() {
+		enemyStats = enemy.getEStats();
+		eLevel = enemyStats[0];
+		eTotHP = enemyStats[1];
+		eHP = eTotHP;
+		eEXP = enemyStats[2];
+		eStrength = enemyStats[3];
+		// int[] enemyStats =  {eLevel, eHP, eEXP, eStrength};
+
+	}
 	public int[] getStats() {
 //		playerStats = {level, totHP, userHP vitality, strength, luck, exp, expNeeded, points};
 
@@ -174,14 +192,14 @@ public class Processing {
 	}
 	
 	public void setStatsOutput() {
-		getStats();
+		setStats();
 		out = "User level: " + String.valueOf(level) 
 		+ System.lineSeparator() + "EXP: " + String.valueOf(exp) + "/" + String.valueOf(expNeeded)
 		+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP) 
 		+ System.lineSeparator() + "Vitality: " + String.valueOf(vitality) 
 		+ System.lineSeparator() + "Strength: " + String.valueOf(strength) 
 		+ System.lineSeparator()+ "Luck: " + String.valueOf(luck) 
-		+ System.lineSeparator() + "Unallocated points: " + String.valueOf(points);
+		+ System.lineSeparator() + "Unassigned points: " + String.valueOf(points);
 	}
 		
 		

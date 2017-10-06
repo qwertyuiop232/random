@@ -41,8 +41,8 @@ public class Stats {
 
 	}
 	
-	public void setHeal(int hp) {
-		if (hp <= 25) 
+	public void setHeal() {
+		if (userHP <= totHP - 20 * level ) 
 			userHP = totHP;
 		else 
 			userHP = userHP + 25;
@@ -50,6 +50,8 @@ public class Stats {
 	
 	public void setVitality() {
 		vitality += 1;
+		totHP = vitality * 50;
+		userHP += 50;
 		points = level * 5 - vitality - luck - strength + 3;
 	}
 	public void setStrength() {
