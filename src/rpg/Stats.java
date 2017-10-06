@@ -25,7 +25,7 @@ public class Stats {
 		luck = 1;
 		points = 5;
 		userHP = 50;
-		i = 1;
+		i = 0;
 	}
 	public void setStats(int[] stats) {
 		level = stats[0];
@@ -41,31 +41,26 @@ public class Stats {
 
 	}
 	
-	public static int getHeal() {
-		if (userHP <= 25) 
+	public void setHeal(int hp) {
+		if (hp <= 25) 
 			userHP = totHP;
 		else 
 			userHP = userHP + 25;
-		return userHP;
 	}
 	
-	public void setVitality(int v) {
-		if (points >=1) {
-		vitality += v;
+	public void setVitality() {
+		vitality += 1;
 		points = level * 5 - vitality - luck - strength + 3;
-		}
 	}
-	public void setStrength(int s) {
-		if (points >=1) {
-		strength += s;
+	public void setStrength() {
+		strength += 1;
 		points = level * 5 - vitality - luck - strength + 3;
-		}
 	}
-	public void setLuck(int l) {
-		if (points >=1) {
-		luck += l;
+	
+	public void setLuck() {
+		luck += 1;
 		points = level * 5 - vitality - luck - strength + 3;
-		}
+		
 	}
 	public void setTotHP() {
 		totHP = (50 * vitality);
@@ -108,6 +103,10 @@ public class Stats {
 
 		int[] a= {level, totHP, userHP, vitality, strength, luck, exp, expNeeded, points};
 		return a;
+	}
+	public int getHeal() {
+		return userHP;
+
 	}
 	
 }

@@ -34,6 +34,7 @@ public class Processing {
 			stats.setInitStats();
 			stats.setEXP(0);
 			playerStats = stats.getStats();
+			setStats();
 	}
 
 	public void setProcess(String in) {
@@ -50,7 +51,7 @@ public class Processing {
 						setEncounter();
 				
 				else 
-					if (in.equals("/run")) 
+					if (in.equals("/flee")) 
 							setEscape();
 						
 					else 
@@ -59,19 +60,30 @@ public class Processing {
 						
 						else 
 							if (in.equals("/stats") || in.equals("/start")) {
-								getStats();
+								setStats();
 								setStatsOutput();
+							}
+							else {
+								String [] segments = in.split("/");
+								if (segments[2].equals("strength"))
+									;
+								else 
+									if (segments[2].equals("vitality"))
+										;
+									else
+										if (segments[2].equals("luck"))
+											;
+								
 							}
 							
 		
 	}
 		
 	public void setFight() {
-		getStats(); //check
 		if  (eAlive == false) {
 			out = "No enemy to fight. /advance to find enemies";
 		}
-		else
+		else {
 			
 		battle.setDmg(strength, enemy.getEStrength());
 		battle.setHP(userHP, eHP);
@@ -79,29 +91,53 @@ public class Processing {
 		eHP = battle.getEHP();
 		if (battle.getEHP()<=0)
 			eAlive = false;
+		stats.setStats(getStats());
+		
 		
 		userHP = battle.getUserHP();
+		stats.setStats(getStats());
 		out = "Enemy dealt " + String.valueOf(battle.getEDmg()) + " damage to you" +System.lineSeparator()+ "Your HP: " 
 				+ userHP + System.lineSeparator() + "You dealt "+String.valueOf(battle.getUserDmg()) + " damage"
 				+System.lineSeparator()+ "Enemy Hp: " + String.valueOf(battle.getEHP());
+	
+		}
 	}
 		
 	public void setHeal() {
-		getStats(); //check
-		userHP = Stats.getHeal();
-		getStats(); //check
+		stats.setStats(getStats()); //check
+		stats.setHeal(userHP);
+		setStats(); //check
 		out = "User has healed for " + String.valueOf(25 * level) + System.lineSeparator() + 
 				"HP: " + String.valueOf(userHP);
 	}
 	public void setRestart() {
 		stats.setInitStats();
-		getStats(); //check
+		setStats();
+		stats.setStats(getStats()); 
 		setStatsOutput();
 				//	playerStats = {level, totHP, vitality, strength, luck, exp, expNeeded, points};
 
 	}
-	public void setEscape() {
+	public void setAllocate(int allocate) {
+		if (points > 0) {
+			switch (allocate) {
+			case 3: stats.setVitality(); 
+				break;
+			case 2: stats.setStrength();
+				break;
+			case 1: stats.setLuck();
+				break;	
+			default: break;
+			}	
+		}
+			else 
+				out = "You do not have any points";
+		setStats();
 		
+	}
+	public void setEscape() {
+		eAlive = false;
+		out = "User has fled, what a coward";
 	}
 	public void setEncounter() {
 		if (eAlive == true) 

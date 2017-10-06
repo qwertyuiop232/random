@@ -7,7 +7,7 @@ public class Input {
 	Processing processing = new Processing(); 
 
 	private String in, out;
-	private static final String[] commands = { "/assign/strength","/restart", "/assign/vitality","/fight", "/heal", "/advance", "/run", "/assign/luck", "/start", "/stats"};
+	private static final String[] commands = { "/assign/strength","/restart", "/assign/vitality","/fight", "/heal", "/advance", "/flee", "/assign/luck", "/start", "/stats"};
 	
 	
 	public Input() {
@@ -25,7 +25,7 @@ public class Input {
 		  }
 		  	else 
 			  if (in.equals("/help")) 
-					out = "/stats, /advance, /fight , /heal, /quit, /run, /start, /restart, /assign/(strength luck or vitality) ";
+					out = "/stats, /advance, /fight , /heal, /quit, /flee, /start, /restart, /assign/(strength luck or vitality) ";
 				else
 					if (in.equals("/quit"))
 						out = "See you next time!";
