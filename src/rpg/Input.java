@@ -19,8 +19,7 @@ public class Input {
 		
 				  
 		  if (Arrays.asList(commands).contains(in)) {
-				processing.setProcess();
-				processing.setOutput();
+				processing.setProcess(in);
 				out = processing.getOutput();
 		  }
 		  	else 

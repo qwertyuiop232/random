@@ -2,7 +2,7 @@ package rpg;
 
 public class Stats {
 		
-	public int vitality, strength, luck, totHP, level, exp, points, i, expNeeded;
+	private static int vitality, strength, luck, totHP, level, exp, points, i, expNeeded;
 	
 	public Stats() {
 	vitality = 0;
@@ -13,28 +13,53 @@ public class Stats {
 	exp = 0;
 	points = 0;
 	i= 0;
-	expNeeded =0;
+	expNeeded = 0;
 	
 	}
-	public void setStats() {
+	public void setInitStats() {
+		level = 1;
+		totHP = 50;
 		vitality = 1;
 		strength = 1;
 		luck = 1;
-		totHP = 50;
-		level = 1;
 		points = 5;
 	}
-	
-	
-	public void setVitality(int v) {
-		vitality += v;
+	public void setStats(int[] stats) {
+		level = stats[0];
+		totHP = stats[1];
+		vitality = stats[2];
+		strength = stats[3];
+		luck = stats[4];
+		expNeeded = stats[5];
+		points = stats[6];
 		
 	}
+	
+	public static int getHeal(int currentHP) {
+		if (currentHP >= totHP + 25*level) 
+			currentHP = totHP;
+		else 
+			currentHP += 25*level;
+		return currentHP;
+	}
+	
+	public void setVitality(int v) {
+		if (points >=1) {
+		vitality += v;
+		points = level * 5 - vitality - luck - strength + 3;
+		}
+	}
 	public void setStrength(int s) {
+		if (points >=1) {
 		strength += s;
+		points = level * 5 - vitality - luck - strength + 3;
+		}
 	}
 	public void setLuck(int l) {
+		if (points >=1) {
 		luck += l;
+		points = level * 5 - vitality - luck - strength + 3;
+		}
 	}
 	public void setTotHP() {
 		totHP = (50 * vitality);
@@ -43,16 +68,12 @@ public class Stats {
 		exp += expGained;
 		if (exp>=expNeeded) {
 				level++;
-				setPoints();
+				points = level * 5 - vitality - luck - strength + 3;
 			}
 			if (i <= level) {
 				expNeeded += 50 * 2 * Math.pow(2, i);
 				i++;
 			}
-	}
-
-	public void setPoints() {
-		points = level * 5 - vitality - luck - strength + 3;
 	}
 	public int getTotHP() {
 		return totHP;
