@@ -1,4 +1,5 @@
-package rpg;
+package rpg2;
+
 import java.util.Scanner;
 
 public class Main {
@@ -38,7 +39,5 @@ public class Main {
 		while (running == true);
 		
 	}
-	
-
 }
-
+	
