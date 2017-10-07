@@ -26,10 +26,14 @@ public class Input {
 		  if (Arrays.asList(commands).contains(in)) {
 				processing.setProcess(in);
 				out = processing.getOutput();
+				if (processing.getUserHP() == 0) {
+					start = false;
+					out += " /start to play again or /quit to exit";
+				}
 		  }
 		  	else 
 			  if (in.equals("/help")) 
-					out = "/stats, /advance, /fight , /heal, /quit, /flee, /start, /restart, /assign/(strength luck or vitality) ";
+					out = "/stats, /advance, /fight , /heal, /quit, /flee," + System.lineSeparator() +" /start, /restart, /assign/(strength luck or vitality) ";
 				else
 					if (in.equals("/quit"))
 						out = "See you next time!";

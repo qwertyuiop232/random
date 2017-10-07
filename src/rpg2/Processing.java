@@ -101,12 +101,14 @@ public class Processing {
 		exp = exp + eEXP;
 		
 		while (i <= level) {
-			expNeeded += 50 * 2 * Math.pow(1.2, i);
+			expNeeded += 25 * 2 * Math.pow(1.2, i);
 			i++;
 		}
 		if (exp >= expNeeded) {
 			level++;
 			points = level * 5 - vitality - luck - strength + 3;
+			expNeeded += 50 * 2 * Math.pow(1.2, i);
+			i++;
 		}
 	}
 	private void setAllocate(int allocate) {
@@ -170,12 +172,12 @@ public class Processing {
 		
 	}
 	private void setHeal() {
-		if (userHP >= totHP - 15 * level) 
+		if (userHP >= totHP - totHP * 0.1) 
 			userHP = totHP;
 		else 
-			userHP += 15 * level;
+			userHP += totHP * 0.1;
 		
-		out = "User has healed for " + String.valueOf(15 * level) 
+		out = "User has healed for " + String.valueOf(totHP * 0.1) 
 			+ System.lineSeparator() + "HP: " + String.valueOf(userHP);
 		
 	}
@@ -200,7 +202,10 @@ public class Processing {
 				out += System.lineSeparator() + "Enemy is defeated"
 					   + System.lineSeparator() + "Exp earned: " + String.valueOf(eEXP);
 			}
-		}
+			if (userHP == 0) {
+				out += System.lineSeparator() + "User has been defeated " + System.lineSeparator() + "Game Over" + System.lineSeparator();
+				}
+			}
 		else 
 			out = "No enemy to fight. /advance to find enemies";
 		
@@ -214,6 +219,9 @@ public class Processing {
 		eDmg = fightOutcome[3];
 		
 		// int[] results = {userHP, eHP, userDmg, eDmg};
+	}
+	public int getUserHP() {
+		return userHP;
 	}
 	private void setStatsOutput() {
 		out = System.lineSeparator() + "User level: " + String.valueOf(level) 

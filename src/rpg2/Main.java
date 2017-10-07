@@ -2,6 +2,20 @@ package rpg2;
 
 import java.util.Scanner;
 
+/**
+ * A simple rpg for fighting, level up, heal, skill points
+ * @author qwertyuiop1
+ * create counters for heal
+ * balance damage values
+ * balance experience points
+ * 
+ * create benchmarks to upscale the exp and dmg
+ * 
+ * lower crit chance
+ * 
+ * 
+ */
+
 public class Main {
 	
 	public static void main(String[] args) {
