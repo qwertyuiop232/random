@@ -19,8 +19,8 @@ public class Battle {
 	public void setFight(int hp, int strength, int eStrength, int ehp, int uLuck, int eLuck) {
 		eCrit = false;
 		uCrit = false;
-		userDmg = (int) (Math.random() * strength * 2 + strength *1);
-		eDmg = (int) (Math.random() * eStrength * 2 + eStrength  *1);
+		userDmg = (int) (Math.random() * Math.pow(strength, 1.2) * 3 + strength *1);
+		eDmg = (int) (Math.random() * Math.pow(eStrength,1.2) * 3 + eStrength  *1);
 		userHP = hp - eDmg;
 		eHP = ehp - userDmg;
 		

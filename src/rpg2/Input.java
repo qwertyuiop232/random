@@ -33,7 +33,9 @@ public class Input {
 		  }
 		  	else 
 			  if (in.equals("/help")) 
-					out = "/stats, /advance, /fight , /heal, /quit, /flee," + System.lineSeparator() +" /start, /restart, /assign/(strength luck or vitality) ";
+					out = "/stats, /advance, /fight , /heal, /quit, /flee," 
+			  + System.lineSeparator() +"/start, /restart, /assign/(strength luck or vitality) "
+			  + System.lineSeparator() + "** note healing costs 5 gold";
 				else
 					if (in.equals("/quit"))
 						out = "See you next time!";

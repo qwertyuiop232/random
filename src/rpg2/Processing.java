@@ -4,7 +4,7 @@ import java.util.*;
 public class Processing {
 
 	private String out;
-	public int userHP, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
+	public int userHP,drop, money, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
 	public boolean eAlive= false;
 	int[] playerStats; 
 	int[] enemyStats;
@@ -37,9 +37,13 @@ public class Processing {
 			userDmg = 0;
 			eDmg = 0;
 			
+			money = 0;
+			drop = 0;
 	}
 	public void setProcess(String in) {
 		out = "" + System.lineSeparator();
+		String [] segments = in.split("/");
+
 		
 		if (in.equals("/fight")) 
 			setFight();
@@ -67,7 +71,6 @@ public class Processing {
 							if (in.equals("/stats")) 
 								setStatsOutput();
 							else {
-								String [] segments = in.split("/");
 								if (segments[2].equals("strength"))
 									setAllocate(2);
 								else 
@@ -92,6 +95,7 @@ public class Processing {
 		expNeeded = 50;
 		points = 5;
 		i = 1;
+		money = 25;
 		
 		setLevel();
 		setStatsOutput();
@@ -100,14 +104,11 @@ public class Processing {
 	private void setLevel() {
 		exp = exp + eEXP;
 		
-		while (i <= level) {
-			expNeeded += 25 * 2 * Math.pow(1.2, i);
-			i++;
-		}
 		if (exp >= expNeeded) {
 			level++;
+			userHP = totHP;
 			points = level * 5 - vitality - luck - strength + 3;
-			expNeeded += 50 * 2 * Math.pow(1.2, i);
+			expNeeded += 40 * Math.pow(1.5, i);
 			i++;
 		}
 	}
@@ -172,14 +173,20 @@ public class Processing {
 		
 	}
 	private void setHeal() {
-		if (userHP >= totHP - totHP * 0.1) 
+		if (money >= 5) {
+		if (userHP >= totHP - totHP * 0.4) 
 			userHP = totHP;
 		else 
 			userHP += totHP * 0.1;
 		
-		out = "User has healed for " + String.valueOf(totHP * 0.1) 
-			+ System.lineSeparator() + "HP: " + String.valueOf(userHP);
-		
+		money -= 5;
+		out = System.lineSeparator() + "User has spent 5 gold"
+			+ System.lineSeparator() + "User has healed for " + String.valueOf((int) (totHP * 0.1)) 
+			+ System.lineSeparator() + "HP: " + String.valueOf(userHP)
+			+ System.lineSeparator() + "Gold: " + String.valueOf(money);
+		}
+		else 
+			out = "You do not have enough funds: " + String.valueOf(money) + "/" + String.valueOf(5);
 	}
 	private void setFight() {
 		if (eAlive == true) {
@@ -199,8 +206,12 @@ public class Processing {
 			if ( eHP == 0) {
 				eAlive = false;
 				setLevel();
+				drop = (int) (Math.random() * 8);
+				money += drop;
 				out += System.lineSeparator() + "Enemy is defeated"
-					   + System.lineSeparator() + "Exp earned: " + String.valueOf(eEXP);
+					   + System.lineSeparator() + "Exp earned: " + String.valueOf(eEXP)
+					   + System.lineSeparator() + "Gold dropped: " + String.valueOf(drop);
+				
 			}
 			if (userHP == 0) {
 				out += System.lineSeparator() + "User has been defeated " + System.lineSeparator() + "Game Over" + System.lineSeparator();
@@ -225,12 +236,13 @@ public class Processing {
 	}
 	private void setStatsOutput() {
 		out = System.lineSeparator() + "User level: " + String.valueOf(level) 
-		+ System.lineSeparator() + "EXP: " + String.valueOf(exp) + "/" + String.valueOf(expNeeded)
-		+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP) 
-		+ System.lineSeparator() + "Vitality: " + String.valueOf(vitality) 
-		+ System.lineSeparator() + "Strength: " + String.valueOf(strength) 
-		+ System.lineSeparator()+ "Luck: " + String.valueOf(luck) 
-		+ System.lineSeparator() + "Unassigned points: " + String.valueOf(points);		
+			+ System.lineSeparator() + "EXP: " + String.valueOf(exp) + "/" + String.valueOf(expNeeded)
+			+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP) 
+			+ System.lineSeparator() + "Vitality: " + String.valueOf(vitality) 
+			+ System.lineSeparator() + "Strength: " + String.valueOf(strength) 
+			+ System.lineSeparator() + "Luck: " + String.valueOf(luck) 
+			+ System.lineSeparator() + "Unassigned points: " + String.valueOf(points)
+			+ System.lineSeparator() + "Gold: " + String.valueOf(money);		
 	}
 	public String getOutput() {
 		return out;

@@ -5,13 +5,9 @@ import java.util.Scanner;
 /**
  * A simple rpg for fighting, level up, heal, skill points
  * @author qwertyuiop1
- * create counters for heal
- * balance damage values
- * balance experience points
  * 
  * create benchmarks to upscale the exp and dmg
  * 
- * lower crit chance
  * 
  * 
  */
@@ -19,6 +15,8 @@ import java.util.Scanner;
 public class Main {
 	
 	public static void main(String[] args) {
+		
+		String out;
 		
 		//set scanner 
 		Scanner scanner;
@@ -38,15 +36,18 @@ public class Main {
 		
 		do {
 		
-			userInput = scanner.nextLine();
-			
+			userInput = scanner.nextLine();			
+			input.setInput(userInput);
+			out = input.getOutput();
+
+
 			if (userInput.equals("/quit")) {
 				running = false;
 				scanner.close();
+				out = "See you next time!";
 			}			
 			
-			input.setInput(userInput);
-			System.out.println(input.getOutput());
+			System.out.println(out);
 			
 			
 		}
