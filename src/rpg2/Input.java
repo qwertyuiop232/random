@@ -2,7 +2,7 @@ package rpg2;
 
 import java.util.Arrays;
 
-public class Input {
+class Input {
 	
 	Processing processing = new Processing(); 
 
@@ -10,18 +10,18 @@ public class Input {
 	private static final String[] commands = { "/assign/strength","/restart", "/assign/vitality","/fight", "/heal", "/advance", "/flee", "/assign/luck", "/start", "/stats"};
 	private boolean isStarted;
 	
-	public Input() {
+	Input() {
 	in = null;	
 	out = null;
 	isStarted = false;
 	}
 		
-	public void setInput(String userInput) {
+	void setInput(String userInput) {
 		in = userInput.toLowerCase();
 		if (in.equals("/start")) 
 			isStarted = true;
 
-		if (isStarted == true) {
+		if (isStarted) {
 				  
 		  if (Arrays.asList(commands).contains(in)) {
 				processing.setProcess(in);
@@ -48,7 +48,7 @@ public class Input {
 		 
 	}
 		 
-	public String getOutput() {	
+	String getOutput() {
 		return out;
 	}
 

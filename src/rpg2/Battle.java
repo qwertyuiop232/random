@@ -1,13 +1,13 @@
 package rpg2;
 
-public class Battle {
+class Battle {
 
 	private static int userDmg, eDmg, userHP, eHP;
 	private boolean isECrit, isUCrit;
 	
 
 
-	public Battle() {
+	Battle() {
 
 		userDmg = 0;
 		eDmg = 0;
@@ -16,11 +16,11 @@ public class Battle {
 		isECrit = false;
 		isUCrit = false;
 	}
-	public void setFight(int hp, int strength, int eStrength, int ehp, int uLuck, int eLuck) {
+	void setFight(int hp, int strength, int eStrength, int ehp, int uLuck, int eLuck) {
 		isECrit = false;
 		isUCrit = false;
-		userDmg = (int) (Math.random() * Math.pow(strength, 1.2) * 3 + strength *1);
-		eDmg = (int) (Math.random() * Math.pow(eStrength,1.2) * 3 + eStrength  *1);
+		userDmg = (int) (Math.random() * Math.pow(strength, 0.5) * 3 + strength);
+		eDmg = (int) (Math.random() * Math.pow(eStrength, 0.5) * 3 + eStrength );
 		userHP = hp - eDmg;
 		eHP = ehp - userDmg;
 		
@@ -40,12 +40,12 @@ public class Battle {
 			eHP = 0;
 
 	}
-	public int[] getFight() {
+	 int[] getFight() {
 		
 		int[] results = {userHP, eHP, userDmg, eDmg};
 		return results;
 	}
-	public boolean[] getCrit() {
+	 boolean[] getCrit() {
 		boolean[] crit = {isUCrit, isECrit};
 		return crit;
 	}

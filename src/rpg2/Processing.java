@@ -1,20 +1,15 @@
 package rpg2;
-import java.util.*;
 
-public class Processing {
+class Processing {
 
 	private String out;
-	public int userHP,drop, money, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
-	public boolean isEAlive= false;
-	int[] playerStats; 
-	int[] enemyStats;
-	int[] fightOutcome;
-	Random rand = new Random();
-	Enemy enemy = new Enemy();
-	Battle battle = new Battle();
+	private int userHP, drop, heal,  money, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
+	private boolean isEAlive = false;
+	private Enemy enemy = new Enemy();
+	private Battle battle = new Battle();
 
 
-	public Processing () {
+	Processing() {
 			out = null;
 			level = 0;
 			totHP = 0;
@@ -39,8 +34,9 @@ public class Processing {
 			
 			money = 0;
 			drop = 0;
+			heal = 0;
 	}
-	public void setProcess(String in) {
+	void setProcess(String in) {
 		out = "" + System.lineSeparator();
 		String [] segments = in.split("/");
 
@@ -108,8 +104,9 @@ public class Processing {
 			level++;
 			userHP = totHP;
 			points = level * 5 - vitality - luck - strength + 3;
-			expNeeded += 40 * Math.pow(1.5, i);
+			expNeeded += 40 * Math.pow(1.8, i);
 			i++;
+			out += "Level UP!!!!!!!!" + System.lineSeparator();
 		}
 	}
 	private void setAllocate(int allocate) {
@@ -138,7 +135,7 @@ public class Processing {
 		
 	}
 	private void setEscape() {
-		if (isEAlive == true) {
+		if (isEAlive) {
 		isEAlive = false;
 		out = "User has fled, what a coward";
 		}
@@ -146,7 +143,7 @@ public class Processing {
 			out = "Nothing to run away from...";
 	}
 	private void setEncounter() {
-		if (isEAlive == false) {
+		if (!isEAlive) {
 		isEAlive = true;
 		enemy.setEStats(level);
 		setEStats();
@@ -161,7 +158,7 @@ public class Processing {
 		
 	}
 	private void setEStats() {
-		enemyStats = enemy.getEStats();
+		int[] enemyStats = enemy.getEStats();
 		eLevel = enemyStats[0];
 		eTotHP = enemyStats[1];
 		eHP = eTotHP;
@@ -174,14 +171,17 @@ public class Processing {
 	}
 	private void setHeal() {
 		if (money >= 5) {
-		if (userHP >= totHP - totHP * 0.4) 
-			userHP = totHP;
-		else 
-			userHP += totHP * 0.1;
-		
-		money -= 5;
+
+			heal =(int) (Math.random() *totHP * 0.3 + totHP * .15);
+
+			if (heal > totHP - userHP)
+			heal = totHP - userHP;
+			userHP += heal;
+
+			money -= 5;
+
 		out = System.lineSeparator() + "User has spent 5 gold"
-			+ System.lineSeparator() + "User has healed for " + String.valueOf((int) (totHP * 0.1)) 
+			+ System.lineSeparator() + "User has healed for " + String.valueOf(heal)
 			+ System.lineSeparator() + "HP: " + String.valueOf(userHP)
 			+ System.lineSeparator() + "Gold: " + String.valueOf(money);
 		}
@@ -189,16 +189,16 @@ public class Processing {
 			out = "You do not have enough funds: " + String.valueOf(money) + "/" + String.valueOf(5);
 	}
 	private void setFight() {
-		if (isEAlive == true) {
+		if (isEAlive) {
 			
 			setOutcome();
 		
-			if (battle.getCrit()[1] == true)
+			if (battle.getCrit()[1])
 				out = "Critical hit!" + System.lineSeparator();
 			out += "Enemy dealt " + String.valueOf(eDmg) + " damage to you" 
 				+ System.lineSeparator()+ "Your HP: " + userHP 
 			  	+ System.lineSeparator();
-			 if (battle.getCrit()[0] == true)
+			 if (battle.getCrit()[0])
 				 out += "Critical hit! " + System.lineSeparator();
 			  	out += "You dealt "+String.valueOf(userDmg) + " damage"
 			  	+ System.lineSeparator()+ "Enemy Hp: " + String.valueOf(eHP);
@@ -223,7 +223,7 @@ public class Processing {
 	}
 	private void setOutcome() {
 		battle.setFight(userHP, strength, eStrength, eHP, luck, eLuck);
-		fightOutcome = battle.getFight();
+		int[] fightOutcome = battle.getFight();
 		userHP = fightOutcome[0];
 		eHP = fightOutcome[1];
 		userDmg = fightOutcome[2];
@@ -231,7 +231,7 @@ public class Processing {
 		
 		// int[] results = {userHP, eHP, userDmg, eDmg};
 	}
-	public int getUserHP() {
+	int getUserHP() {
 		return userHP;
 	}
 	private void setStatsOutput() {
@@ -244,7 +244,7 @@ public class Processing {
 			+ System.lineSeparator() + "Unassigned points: " + String.valueOf(points)
 			+ System.lineSeparator() + "Gold: " + String.valueOf(money);		
 	}
-	public String getOutput() {
+	String getOutput() {
 		return out;
 	}
 	

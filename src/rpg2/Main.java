@@ -28,7 +28,7 @@ public class Main {
 		input = new Input();
 		
 		//create game state
-		boolean isRunning = true;
+		Boolean isRunning = true;
 		
 		//start game
 		System.out.println("Welcome! Type /start to get started");
@@ -51,7 +51,7 @@ public class Main {
 			
 			
 		}
-		while (isRunning == true);
+		while (isRunning);
 		
 	}
 }

@@ -2,24 +2,24 @@ package rpg2;
 
 import java.util.Random;
 
-public class Enemy{
+class Enemy{
 	Random rand = new Random();
 	
 	private int eStrength, eHP, eEXP, eLevel;
-		public Enemy() {
+		Enemy() {
 			eLevel = 0;
 			eStrength = 0;
 			eHP = 0;
 			eEXP = 0;
 		}
-		public void setEStats(int level) {
+		void setEStats(int level) {
 			eLevel = rand.nextInt(level) +1;
 			eStrength = (int) (2.2 * eLevel);
 			eHP = eLevel * 80;
-			eEXP = (int) (Math.random() * 20 * level + 15 * level) ;
+			eEXP = (int) (Math.random() * 20 * eLevel + 15 * eLevel) ;
 
 		}
-		public int[] getEStats() {
+		int[] getEStats() {
 			int[] a =  {eLevel, eHP, eEXP, eStrength};
 			return a;
 		}
