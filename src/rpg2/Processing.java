@@ -106,7 +106,7 @@ class Processing {
 			points = level * 5 - vitality - luck - strength + 3;
 			expNeeded += 40 * Math.pow(1.8, i);
 			i++;
-			out += "Level UP!!!!!!!!" + System.lineSeparator();
+			out += System.lineSeparator() + "Level UP!!!!!!!!" + System.lineSeparator();
 		}
 	}
 	private void setAllocate(int allocate) {
