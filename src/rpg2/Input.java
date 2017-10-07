@@ -8,26 +8,26 @@ public class Input {
 
 	private String in, out;
 	private static final String[] commands = { "/assign/strength","/restart", "/assign/vitality","/fight", "/heal", "/advance", "/flee", "/assign/luck", "/start", "/stats"};
-	private boolean start;
+	private boolean isStarted;
 	
 	public Input() {
 	in = null;	
 	out = null;
-	start = false;
+	isStarted = false;
 	}
 		
 	public void setInput(String userInput) {
 		in = userInput.toLowerCase();
 		if (in.equals("/start")) 
-			start = true;
+			isStarted = true;
 
-		if (start == true) {
+		if (isStarted == true) {
 				  
 		  if (Arrays.asList(commands).contains(in)) {
 				processing.setProcess(in);
 				out = processing.getOutput();
 				if (processing.getUserHP() == 0) {
-					start = false;
+					isStarted = false;
 					out += " /start to play again or /quit to exit";
 				}
 		  }

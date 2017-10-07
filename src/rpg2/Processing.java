@@ -5,7 +5,7 @@ public class Processing {
 
 	private String out;
 	public int userHP,drop, money, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
-	public boolean eAlive= false;
+	public boolean isEAlive= false;
 	int[] playerStats; 
 	int[] enemyStats;
 	int[] fightOutcome;
@@ -134,20 +134,20 @@ public class Processing {
 	}
 	private void setRestart() {
 		setStart();
-		eAlive = false;
+		isEAlive = false;
 		
 	}
 	private void setEscape() {
-		if (eAlive == true) {
-		eAlive = false;
+		if (isEAlive == true) {
+		isEAlive = false;
 		out = "User has fled, what a coward";
 		}
 		else 
 			out = "Nothing to run away from...";
 	}
 	private void setEncounter() {
-		if (eAlive == false) {
-		eAlive = true;
+		if (isEAlive == false) {
+		isEAlive = true;
 		enemy.setEStats(level);
 		setEStats();
 		out = System.lineSeparator() + "A challenger appears!!" + System.lineSeparator() + "User level: " + String.valueOf(level)
@@ -189,7 +189,7 @@ public class Processing {
 			out = "You do not have enough funds: " + String.valueOf(money) + "/" + String.valueOf(5);
 	}
 	private void setFight() {
-		if (eAlive == true) {
+		if (isEAlive == true) {
 			
 			setOutcome();
 		
@@ -204,7 +204,7 @@ public class Processing {
 			  	+ System.lineSeparator()+ "Enemy Hp: " + String.valueOf(eHP);
 				
 			if ( eHP == 0) {
-				eAlive = false;
+				isEAlive = false;
 				setLevel();
 				drop = (int) (Math.random() * 8);
 				money += drop;
