@@ -24,7 +24,8 @@ public class GettingStarted extends Frame{
 		
 		frame.setVisible(true);
 		
-		
+
+
 	}
 
 }
