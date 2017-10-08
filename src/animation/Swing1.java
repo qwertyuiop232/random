@@ -11,7 +11,6 @@ import javax.swing.SwingUtilities;
 
 public class Swing1 {
 	private static void ConstructGUI() {
-		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("JFrame test");
@@ -22,11 +21,12 @@ public class Swing1 {
 		frame.add(new JLabel("Last Name: "));
 		frame.add(new JTextField());
 		frame.add(new JButton("Register"));
-		
+
 		int frameWidth =200;
 		int frameHeight = 100;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setBounds((int) screenSize.getWidth() - frameWidth, 0, frameWidth, frameHeight);
+		// frame.setLocationRelativeTo(null) centers the JFrame
 		frame.setVisible(true);
 	
 	}
