@@ -3,7 +3,8 @@ package rpg2;
 class Processing {
 
 	private String out;
-	private int userHP, drop, heal,  money, totHP, eHP, eTotHP, vitality, strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
+	private int userHP, drop, heal,  money, totHP, eHP, eTotHP, vitality, strength, 
+	luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
 	private boolean isEAlive = false;
 	private Enemy enemy = new Enemy();
 	private Battle battle = new Battle();
@@ -147,7 +148,8 @@ class Processing {
 		isEAlive = true;
 		enemy.setEStats(level);
 		setEStats();
-		out = System.lineSeparator() + "A challenger appears!!" + System.lineSeparator() + "User level: " + String.valueOf(level)
+		out = System.lineSeparator() + "A challenger appears!!" 
+		+ System.lineSeparator() + "User level: " + String.valueOf(level)
 		+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP)
 		+ System.lineSeparator() + "Enemy level: " + String.valueOf(eLevel)
 		+ System.lineSeparator() + "Enemy HP: " + String.valueOf(eHP) + "/" + String.valueOf(eTotHP);
@@ -214,9 +216,10 @@ class Processing {
 				
 			}
 			if (userHP == 0) {
-				out += System.lineSeparator() + "User has been defeated " + System.lineSeparator() + "Game Over" + System.lineSeparator();
-				}
+				out += System.lineSeparator() + "User has been defeated " + 
+						System.lineSeparator() + "Game Over" + System.lineSeparator();	
 			}
+		}
 		else 
 			out = "No enemy to fight. /advance to find enemies";
 		
