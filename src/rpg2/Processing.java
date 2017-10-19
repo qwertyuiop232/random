@@ -38,7 +38,7 @@ class Processing {
 			heal = 0;
 	}
 	void setProcess(String in) {
-		out = "" + System.lineSeparator();
+		out = "" + '\n';
 		String [] segments = in.split("/");
 
 		
@@ -107,7 +107,7 @@ class Processing {
 			points = level * 5 - vitality - luck - strength + 3;
 			expNeeded += 40 * Math.pow(1.8, i);
 			i++;
-			out += System.lineSeparator() + "Level UP!!!!!!!!" + System.lineSeparator();
+			out += '\n' + "Level UP!!!!!!!!" + '\n';
 		}
 	}
 	private void setAllocate(int allocate) {
@@ -149,10 +149,10 @@ class Processing {
 		enemy.setEStats(level);
 		setEStats();
 		out = System.lineSeparator() + "A challenger appears!!" 
-		+ System.lineSeparator() + "User level: " + String.valueOf(level)
-		+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP)
-		+ System.lineSeparator() + "Enemy level: " + String.valueOf(eLevel)
-		+ System.lineSeparator() + "Enemy HP: " + String.valueOf(eHP) + "/" + String.valueOf(eTotHP);
+		+ '\n' + "User level: " + String.valueOf(level)
+		+ '\n' + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP)
+		+ '\n' + "Enemy level: " + String.valueOf(eLevel)
+		+ '\n' + "Enemy HP: " + String.valueOf(eHP) + "/" + String.valueOf(eTotHP);
 		// int[] enemyStats =  {eLevel, eHP, eEXP, eStrength};
 		}
 		else 
@@ -182,10 +182,10 @@ class Processing {
 
 			money -= 5;
 
-		out = System.lineSeparator() + "User has spent 5 gold"
-			+ System.lineSeparator() + "User has healed for " + String.valueOf(heal)
-			+ System.lineSeparator() + "HP: " + String.valueOf(userHP)
-			+ System.lineSeparator() + "Gold: " + String.valueOf(money);
+		out = '\n' + "User has spent 5 gold"
+			+ '\n' + "User has healed for " + String.valueOf(heal)
+			+ '\n' + "HP: " + String.valueOf(userHP)
+			+ '\n' + "Gold: " + String.valueOf(money);
 		}
 		else 
 			out = "You do not have enough funds: " + String.valueOf(money) + "/" + String.valueOf(5);
@@ -196,28 +196,28 @@ class Processing {
 			setOutcome();
 		
 			if (battle.getCrit()[1])
-				out = "Critical hit!" + System.lineSeparator();
+				out = "Critical hit!" + '\n';
 			out += "Enemy dealt " + String.valueOf(eDmg) + " damage to you" 
-				+ System.lineSeparator()+ "Your HP: " + userHP 
-			  	+ System.lineSeparator();
+				+ '\n' + "Your HP: " + userHP 
+			  	+ '\n';
 			 if (battle.getCrit()[0])
-				 out += "Critical hit! " + System.lineSeparator();
+				 out += "Critical hit! " + '\n';
 			  	out += "You dealt "+String.valueOf(userDmg) + " damage"
-			  	+ System.lineSeparator()+ "Enemy Hp: " + String.valueOf(eHP);
+			  	+ '\n' + "Enemy Hp: " + String.valueOf(eHP);
 				
 			if ( eHP == 0) {
 				isEAlive = false;
 				setLevel();
 				drop = (int) (Math.random() * 8);
 				money += drop;
-				out += System.lineSeparator() + "Enemy is defeated"
-					   + System.lineSeparator() + "Exp earned: " + String.valueOf(eEXP)
-					   + System.lineSeparator() + "Gold dropped: " + String.valueOf(drop);
+				out += '\n' + "Enemy is defeated"
+					   + '\n' + "Exp earned: " + String.valueOf(eEXP)
+					   + '\n' + "Gold dropped: " + String.valueOf(drop);
 				
 			}
 			if (userHP == 0) {
-				out += System.lineSeparator() + "User has been defeated " + 
-						System.lineSeparator() + "Game Over" + System.lineSeparator();	
+				out += '\n' + "User has been defeated " + 
+						'\n' + "Game Over" + '\n';	
 			}
 		}
 		else 
@@ -238,18 +238,16 @@ class Processing {
 		return userHP;
 	}
 	private void setStatsOutput() {
-		out = System.lineSeparator() + "User level: " + String.valueOf(level) 
-			+ System.lineSeparator() + "EXP: " + String.valueOf(exp) + "/" + String.valueOf(expNeeded)
-			+ System.lineSeparator() + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP) 
-			+ System.lineSeparator() + "Vitality: " + String.valueOf(vitality) 
-			+ System.lineSeparator() + "Strength: " + String.valueOf(strength) 
-			+ System.lineSeparator() + "Luck: " + String.valueOf(luck) 
-			+ System.lineSeparator() + "Unassigned points: " + String.valueOf(points)
-			+ System.lineSeparator() + "Gold: " + String.valueOf(money);		
+		out = '\n' + "User level: " + String.valueOf(level) 
+			+ '\n' + "EXP: " + String.valueOf(exp) + "/" + String.valueOf(expNeeded)
+			+ '\n' + "HP: " + String.valueOf(userHP) + "/" + String.valueOf(totHP) 
+			+ '\n' + "Vitality: " + String.valueOf(vitality) 
+			+ '\n' + "Strength: " + String.valueOf(strength) 
+			+ '\n' + "Luck: " + String.valueOf(luck) 
+			+ '\n' + "Unassigned points: " + String.valueOf(points)
+			+ '\n' + "Gold: " + String.valueOf(money);		
 	}
 	String getOutput() {
 		return out;
 	}
-	
-	
 }
