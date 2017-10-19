@@ -13,6 +13,7 @@ public class ConstructGUI extends JFrame{
 	JButton enter, quit;
 	JTextField uInput;
 	JLabel output, showInput;
+	JScrollPane scroller;
 	
 	
 	public ConstructGUI(String title) {
@@ -28,9 +29,12 @@ public class ConstructGUI extends JFrame{
 		uInput = new JTextField();
 		output = new JLabel();
 		showInput = new JLabel();
+		scroller = new JScrollPane();
+		scroller.add(output);
 		
 		output.setBounds(76, 3, 400, 400);
 		output.setVerticalAlignment(JLabel.TOP);
+		
 		
 		enter.setBounds(480, 298, 100, 50);
 		enter.setFont(new Font ("Sherif", 0, 23));
