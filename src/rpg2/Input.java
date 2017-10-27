@@ -7,7 +7,7 @@ class Input {
 	Processing processing = new Processing(); 
 
 	private String in, out;
-	private static final String[] commands = { "/assign/strength","/restart", "/assign/vitality","/fight", "/heal", "/advance", "/flee", "/assign/luck", "/start", "/stats"};
+	private static final String[] commands = { "/assign/strength", "/load", "/restart","/save", "/assign/vitality","/fight", "/heal", "/advance", "/flee", "/assign/luck", "/start", "/stats"};
 	private boolean isStarted;
 	
 	Input() {
