@@ -16,7 +16,7 @@ class Enemy{
 			eLevel = rand.nextInt(level) +1;
 			eStrength = (int) (2.2 * eLevel);
 			eHP = eLevel * 110;
-			eEXP = (int) (Math.random() * 20 * eLevel + 15 * eLevel) ;
+			eEXP = (int) (Math.random() * 30 * eLevel + 15 * eLevel) ;
 
 		}
 		int[] getEStats() {

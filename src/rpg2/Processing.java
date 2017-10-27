@@ -10,7 +10,7 @@ class Processing {
 
 	private String out;
 	private int userHP, drop, heal,  money, totHP, eHP, eTotHP, vitality, strength, 
-	luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg;
+	luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, eStrength, userDmg, eDmg;
 	private boolean isEAlive = false;
 	private Enemy enemy = new Enemy();
 	private Battle battle = new Battle();
@@ -27,7 +27,6 @@ class Processing {
 			exp = 0;
 			expNeeded = 0;
 			points = 0;
-			i = 0;
 			
 			eHP = 0;
 			eTotHP = 0;
@@ -81,8 +80,9 @@ class Processing {
 										if (segments[2].equals("strength"))
 											setAllocate(2);
 										else 
-											if (segments[2].equals("vitality"))
+											if (segments[2].equals("vitality")) {
 												setAllocate(3);
+											}
 											else
 												if (segments[2].equals("luck"))
 													setAllocate(1);
@@ -100,25 +100,17 @@ class Processing {
 		FileInputStream fileStream = new FileInputStream("saveFile");
 	    ObjectInputStream objectStream = new ObjectInputStream(fileStream);
 		load = (int[]) objectStream.readObject();
+			isEAlive = false;
 			userHP = load[0];
-		    drop = load[1];
-		    heal = load[2];
-		    money = load[3];
-		    totHP = load[4];
-		    vitality = load[5];
-		    strength = load[6];
-		    luck = load[7];
-		    points = load[8];
-		    exp = load[8];
-		    expNeeded = load[9];
-		    eLuck = load[10];
-		    level = load[11];
-		    eLevel = load[12];
-		    eEXP = load[13];
-		    i = load[14];
-		    eStrength = load[15];
-		    userDmg = load[16];
-		    eDmg = load[17];
+		    money = load[1];
+		    totHP = load[2];
+		    vitality = load[3];
+		    strength = load[4];
+		    luck = load[5];
+		    points = load[6];
+		    exp = load[7];
+		    expNeeded = load[8];
+		    level = load[9];
 		    System.out.println("loaded \n");
 		    setStatsOutput();
 	    fileStream.close();
@@ -132,8 +124,8 @@ class Processing {
 	    try {   
 	        FileOutputStream fileStream = new FileOutputStream("saveFile");   
 	        ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
-	        int[] saveState = {userHP, drop, heal, money, totHP, eHP, eTotHP, vitality,
-	        		strength, luck, points, exp, expNeeded, eLuck, level, eLevel, eEXP, i, eStrength, userDmg, eDmg};
+	        int[] saveState = {userHP, money, totHP, vitality,
+	        		strength, luck, points, exp, expNeeded, level};
 
 	        objectStream.writeObject(saveState);
 	        out = "success";
@@ -156,7 +148,6 @@ class Processing {
 		exp = 0;
 		expNeeded = 50;
 		points = 5;
-		i = 1;
 		money = 25;
 		isEAlive = false;
 		setStatsOutput();
@@ -169,13 +160,14 @@ class Processing {
 			level++;
 			userHP = totHP;
 			points = level * 5 - vitality - luck - strength + 3;
-			expNeeded += 40 * Math.pow(1.8, i);
-			i++;
+			expNeeded += 40 * Math.pow(1.8, level);
 			out += '\n' + "Level UP!!!!!!!!" + '\n';
 		}
 	}
 	private void setAllocate(int allocate) {
 		if (points > 0) {
+			if (allocate == 3) 
+				userHP += 50;
 			switch (allocate) {
 			case 3: vitality++; 
 				break;
@@ -184,14 +176,13 @@ class Processing {
 			case 1: luck++;
 				break;	
 			default: break;
-
 			}
-			totHP = vitality *50;
+			totHP = vitality * 50;
 			points = level * 5 - vitality - luck - strength + 3;
 			setStatsOutput();
 		}
 		else 
-			out = "You do not have any points";
+			out = "insufficient points";
 		
 	}
 	private void setRestart() {
