@@ -1,8 +1,6 @@
 package animation;
 import java.awt.*;
 
-
-
 public class GettingStarted extends Frame{
 	private static final long serialVersionUID = 1L;
 	
