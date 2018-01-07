@@ -114,7 +114,7 @@ class Processing {
 		    System.out.println("loaded \n");
 		    setStatsOutput();
 	    fileStream.close();
-	    objectStream.close();
+		    objectStream.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
