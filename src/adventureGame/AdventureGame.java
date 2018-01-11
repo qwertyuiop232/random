@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 public class AdventureGame {
 	static ArrayList<room> tower = new ArrayList<room>();
+    static gmInventory gameINV = new gmInventory();
 
 	public static void main(String[] args) {
-		consumables hp10 = new consumables("small health potion", 10, 0, 0, 1);
-		items item1 = new items("",1);
+		Consumables hp10 = new Consumables("Small Health Potion", 10, 0, 0, 1,0);
 		
-		inventory.add(hp10);
-		inventory.get(1).addItem(1);
-		System.out.println(inventory.get(1).getQTY());
-
+		gameINV.addConsumable(hp10);
 	}
 }
