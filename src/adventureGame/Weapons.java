@@ -3,7 +3,7 @@ package adventureGame;
 public class Weapons extends items{
 	private int dmg;
 	private double durability;
-	public Weapons(String name, int dmg, int cost, int durability, int ID) {
+	public Weapons(String name, int dmg, int durability,int cost, int ID) {
 		super (ID, name, cost);
 		this.dmg = dmg;
 		this.durability = (double) durability;
