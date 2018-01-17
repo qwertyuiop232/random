@@ -1,49 +1,62 @@
 package adventureGame;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Rooms {
 	private String name;
-	private String description;
 	private int ID;
-	private String roomMap;
-	private ArrayList<Integer> row;
-	private ArrayList<ArrayList<Integer>> map;
+	private boolean[][] boundaryMap; // 1 non moveable or false
+	private int[][] tileMap;
+	private int bossID;
+	private boolean spawnable;
+	private boolean bossAlive;
+	private int[] mob = new int[3];
+	private static TileMap tileMapClass;
 	
-	public Rooms(String name, String description, int ID, String roomMap) {
+	public Rooms(String name, int ID, int bossID, String mapFile, String tileFile) {
 		this.name = name;
-		this.description = description;
 		this.ID = ID;
-		this.roomMap = roomMap;
-		setMap();
+		this.bossID = bossID;
+		spawnable = false;
+		bossAlive = true;
+		tileMapClass = new TileMap(tileFile);
+		tileMap = tileMapClass.getMap();
+		boundaryMap = tileMapClass.boundaryMap();
 	}
+	public Rooms(String name, int ID, boolean spawnable, int mob1, int mob2, int mob3, String mapFile, String tileFile) {
+		this.name = name;
+		this.ID = ID;
+		this.spawnable = spawnable;
+		bossAlive = false;
+		mob[0] = mob1;
+		mob[1] = mob2;
+		mob[2] = mob3;
+		tileMapClass = new TileMap(tileFile);
+		tileMap = tileMapClass.getMap();
+		boundaryMap = tileMapClass.boundaryMap();
 
-	private void setMap() {
-		try(BufferedReader br = new BufferedReader(new FileReader(roomMap))) {
-			String currentLine;
-			while((currentLine = br.readLine()) != null) {
-				if(currentLine.isEmpty()) {
-					continue;
-				}
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 	}
-
 	public int getID() {
 		return ID;
 	}
 	public String getName() {
 		return name;
 	}
-	public String getDescription() {
-		return description;
+	public boolean[][] getBoundaryMap() {
+		return boundaryMap;
 	}
-	
+	public int[][] getTileMap() {
+		return tileMap;
+	}
+	public boolean getSpawnable() {
+		return spawnable;
+	}
+	public int getBossID() {
+		return bossID;
+	}
+	public boolean bossAlive() {
+		return bossAlive;
+	}
+	public void bossDead() {
+		bossAlive = false;
+	}
 	
 }

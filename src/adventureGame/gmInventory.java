@@ -57,4 +57,7 @@ public class gmInventory {
 	public static void addEnemy(Enemy enemy) {
 		enemyINV.add(enemy);
 	}
+	public static void addRoom(Rooms room) {
+		roomINV.add(room);
+	}
 }
