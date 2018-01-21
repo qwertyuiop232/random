@@ -1,4 +1,4 @@
-package adventureGame;
+package adventureGame.graphic;
 
 import java.util.*;
 

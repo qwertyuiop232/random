@@ -2,7 +2,7 @@ package adventureGame;
 
 import java.util.HashMap;
 
-public class Enemy extends Character{ 
+public class Enemy extends Players{ 
 	private int possibleDropID;
 	private int gold;
 	private int exp;

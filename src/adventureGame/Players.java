@@ -3,7 +3,7 @@ package adventureGame;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Character {
+public class Players {
 	int[] baseStats;
 	int[] charStats;
 	int[] sideStats;
@@ -14,7 +14,7 @@ public class Character {
 	static int[] expCurve;
 	String name;
 	
-	public Character(String name) {
+	public Players(String name) {
 		weaponINV = new HashMap<Integer,Integer>();
 		consumableINV = new HashMap<Integer,Integer>();
 		equipped = false;

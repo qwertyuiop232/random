@@ -1,5 +1,7 @@
 package adventureGame;
 
+import adventureGame.graphic.TileMap;
+
 public class Rooms {
 	private String name;
 	private int ID;

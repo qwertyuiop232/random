@@ -6,13 +6,13 @@ package adventureGame;
  * might try to clone the enemy
  */
 public class Battle {
-	Character player;
+	Players player;
 	Enemy enemy;
 	boolean done; 
 	int eHP;
 	int eMP;
 
-	public Battle(Character player, int enemyID) {
+	public Battle(Players player, int enemyID) {
 		this.player = player;
 		enemy = gmInventory.getEnemy(enemyID);
 		eHP = enemy.getBaseStats(0);

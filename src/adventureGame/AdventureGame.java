@@ -21,7 +21,7 @@ public class AdventureGame {
 	private static void expChart() {
 		ArrayList<int[]> expCurve = new ArrayList<int[]>();
 		expCurve = load("expChart", expCurve);
-		Character.expCurve = expCurve.get(0);
+		Players.expCurve = expCurve.get(0);
 	}
 	private static void setItems() {
 		gmInventory.addConsumable(new Consumables("Small Health Potion", 30, 0, 0, 8, 1)); // name, healt, mana, stat, cost ,id
